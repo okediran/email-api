@@ -48,12 +48,12 @@ INSTALLED_APPS = [
 ]
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = 'us3.smtp.mailhostbox.com'
-EMAIL_PORT = 25
-EMAIL_HOST_USER = 'info@frcglobal.org.uk'
-EMAIL_HOST_PASSWORD = 'ZLTvqJb4'
-EMAIL_USE_SSL = True  # Change to True i
-RECAPTCHA_SECRET_KEY = config("RECAPTCHA_SECRET_KEY", default="")
+EMAIL_HOST = config("SMTP_HOST")
+EMAIL_PORT = config("SMTP_PORT", cast=int)
+EMAIL_HOST_USER = config("SMTP_USER")
+EMAIL_HOST_PASSWORD = config("SMTP_PASS")
+EMAIL_USE_TLS = config("SMTP_SECURE", default=True, cast=bool)
+EMAIL_USE_SSL = False  # Change to True i
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
